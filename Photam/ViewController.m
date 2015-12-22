@@ -66,6 +66,12 @@
     return cell;
 }
 
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    selectedIndex = INT16_MAX;
+    [self.listTableView beginUpdates];
+    [self.listTableView endUpdates];
+}
+
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     if (selectedIndex == indexPath.row) {
         selectedIndex = INT16_MAX;
