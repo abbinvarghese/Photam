@@ -9,8 +9,6 @@
 #import "ViewController.h"
 #import "PListsTableViewCell.h"
 #import "PSpots.h"
-#import "NSMutableArray+PMutableArray.h"
-#import "PSpotsObjectHandler.h"
 
 @interface ViewController ()
 
@@ -25,7 +23,9 @@
     self.spotsArray = [[NSMutableArray alloc]init];
     [self setNeedsStatusBarAppearanceUpdate];
     [self.listTableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
-    [self refresh];
+    for (int i = 0; i<500; i++) {
+        [self refresh:i];
+    }
     
 }
 
@@ -61,20 +61,29 @@
     return UIStatusBarStyleLightContent;
 }
 
--(void)refresh{
-    [PSpotsObjectHandler getSpots:^(NSArray *objArray) {
-//        self.spotsArray = [[NSMutableArray alloc]initWithArray:objArray];
-//        [self.listTableView reloadData];
-        for (PSpots *obj in objArray) {
-            float lat = [self randomFloatBetween:8 and:11];
-            float lon = [self randomFloatBetween:75 and:77];
-            PFGeoPoint *goePOint = [PFGeoPoint geoPointWithLatitude:lat longitude:lon];
-            obj.latLon = goePOint;
-            [obj saveInBackground];
-        }
-    } failure:^(NSError *error) {
-        
+-(void)refresh:(int)i{
+
+    float lat = [self randomFloatBetween:8 and:12];
+    float lon = [self randomFloatBetween:74 and:77];
+    
+    PSpots *spotObj = [PSpots object];
+    spotObj.spotTitle = @"Sample Title";
+    spotObj.spotDescription = @"The Parse platform provides a complete backend solution for your mobile application. Our goal is to totally eliminate the need for writing server code or maintaining servers.";
+    spotObj.rating = [NSNumber numberWithInt:(int)[self randomFloatBetween:0 and:5]];
+    spotObj.latLon = [PFGeoPoint geoPointWithLatitude:lat longitude:lon];
+//    NSMutableArray *imageArray = [[NSMutableArray alloc]init];
+//    for (int k = 0; k<5; k++) {
+//        NSString *imageName = [NSString stringWithFormat:@"%d.jpg",(int)[self randomFloatBetween:0 and:60]];
+//        NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:imageName], 1.0);
+//        PFFile *imageFile = [PFFile fileWithData:imageData];
+//        [imageArray addObject:imageFile];
+//    }
+//    spotObj.imageArray = imageArray;
+    
+    [spotObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        NSLog(@"%i",i);
     }];
+    
 }
 
 - (float)randomFloatBetween:(float)smallNumber and:(float)bigNumber {
