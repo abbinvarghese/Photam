@@ -11,6 +11,10 @@
 		580561C41C29666500D6EFC2 /* cJdYy8.png in Resources */ = {isa = PBXBuildFile; fileRef = 580561C31C29666500D6EFC2 /* cJdYy8.png */; };
 		580561C61C29746700D6EFC2 /* 6893706-blurred.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580561C51C29746700D6EFC2 /* 6893706-blurred.jpg */; };
 		580561C81C29754D00D6EFC2 /* 2015-10-20-anthonydelanoix-003.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 580561C71C29754D00D6EFC2 /* 2015-10-20-anthonydelanoix-003.jpg */; };
+		58543FBD1C31083500BDD076 /* PSpotsObjectHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 58543FBC1C31083500BDD076 /* PSpotsObjectHandler.m */; };
+		58543FC01C310BF900BDD076 /* PSpots.m in Sources */ = {isa = PBXBuildFile; fileRef = 58543FBF1C310BF900BDD076 /* PSpots.m */; };
+		58543FC41C31282F00BDD076 /* NSMutableArray+PMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 58543FC31C31282F00BDD076 /* NSMutableArray+PMutableArray.m */; };
+		585990E41C3276AE0098A410 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 585990E31C3276AE0098A410 /* CoreLocation.framework */; };
 		76A1F1008A67D3F69AFEF47B /* libPods-Photam.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC756458A2C9F823F208D31 /* libPods-Photam.a */; };
 		ED20DFF41C26B071008600B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20DFF31C26B071008600B8 /* main.m */; };
 		ED20DFF71C26B071008600B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20DFF61C26B071008600B8 /* AppDelegate.m */; };
@@ -40,6 +44,13 @@
 		580561C31C29666500D6EFC2 /* cJdYy8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cJdYy8.png; sourceTree = "<group>"; };
 		580561C51C29746700D6EFC2 /* 6893706-blurred.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "6893706-blurred.jpg"; sourceTree = "<group>"; };
 		580561C71C29754D00D6EFC2 /* 2015-10-20-anthonydelanoix-003.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "2015-10-20-anthonydelanoix-003.jpg"; sourceTree = "<group>"; };
+		58543FBB1C31083500BDD076 /* PSpotsObjectHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSpotsObjectHandler.h; sourceTree = "<group>"; };
+		58543FBC1C31083500BDD076 /* PSpotsObjectHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSpotsObjectHandler.m; sourceTree = "<group>"; };
+		58543FBE1C310BF900BDD076 /* PSpots.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PSpots.h; sourceTree = "<group>"; };
+		58543FBF1C310BF900BDD076 /* PSpots.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PSpots.m; sourceTree = "<group>"; };
+		58543FC21C31282F00BDD076 /* NSMutableArray+PMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+PMutableArray.h"; sourceTree = "<group>"; };
+		58543FC31C31282F00BDD076 /* NSMutableArray+PMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+PMutableArray.m"; sourceTree = "<group>"; };
+		585990E31C3276AE0098A410 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		590F9715C075FBB198DA559E /* Pods-Photam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photam.release.xcconfig"; path = "Pods/Target Support Files/Pods-Photam/Pods-Photam.release.xcconfig"; sourceTree = "<group>"; };
 		A399C91975BD449083E56C47 /* Pods-Photam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Photam/Pods-Photam.debug.xcconfig"; sourceTree = "<group>"; };
 		CCC756458A2C9F823F208D31 /* libPods-Photam.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Photam.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -76,6 +87,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				585990E41C3276AE0098A410 /* CoreLocation.framework in Frameworks */,
 				76A1F1008A67D3F69AFEF47B /* libPods-Photam.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +95,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58543FBA1C3107CB00BDD076 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				58543FBB1C31083500BDD076 /* PSpotsObjectHandler.h */,
+				58543FBC1C31083500BDD076 /* PSpotsObjectHandler.m */,
+				58543FBE1C310BF900BDD076 /* PSpots.h */,
+				58543FBF1C310BF900BDD076 /* PSpots.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		58543FC11C3127DB00BDD076 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				58543FC21C31282F00BDD076 /* NSMutableArray+PMutableArray.h */,
+				58543FC31C31282F00BDD076 /* NSMutableArray+PMutableArray.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
 		626900545C20B9CF00C52152 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +127,7 @@
 		BD41A61D03282ECFEEF1991B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				585990E31C3276AE0098A410 /* CoreLocation.framework */,
 				CCC756458A2C9F823F208D31 /* libPods-Photam.a */,
 			);
 			name = Frameworks;
@@ -121,6 +154,8 @@
 		ED20DFF11C26B071008600B8 /* Photam */ = {
 			isa = PBXGroup;
 			children = (
+				58543FC11C3127DB00BDD076 /* Category */,
+				58543FBA1C3107CB00BDD076 /* Model */,
 				ED20E0101C26BCFC008600B8 /* Dummy Images */,
 				ED20E00A1C26B4A3008600B8 /* Custom Cells & Views */,
 				ED20E0091C26B47A008600B8 /* ViewControllers */,
@@ -325,9 +360,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58543FC01C310BF900BDD076 /* PSpots.m in Sources */,
+				58543FBD1C31083500BDD076 /* PSpotsObjectHandler.m in Sources */,
 				ED20DFFA1C26B071008600B8 /* ViewController.m in Sources */,
 				ED20DFF71C26B071008600B8 /* AppDelegate.m in Sources */,
 				ED20E00D1C26B4C3008600B8 /* PListsTableViewCell.m in Sources */,
+				58543FC41C31282F00BDD076 /* NSMutableArray+PMutableArray.m in Sources */,
 				ED20DFF41C26B071008600B8 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

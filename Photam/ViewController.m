@@ -8,36 +8,25 @@
 
 #import "ViewController.h"
 #import "PListsTableViewCell.h"
-#import <Parse/Parse.h>
+#import "PSpots.h"
+#import "NSMutableArray+PMutableArray.h"
+#import "PSpotsObjectHandler.h"
 
 @interface ViewController ()
 
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
-@property (nonatomic,strong) NSArray *spotsArray;
-@property (weak, nonatomic) IBOutlet UIImageView *backGroundImageView;
-
-
-
+@property (nonatomic,strong) NSMutableArray *spotsArray;
 @end
 
 @implementation ViewController
 
-{
-    NSMutableArray *ars;
-    int selectedIndex;
-}
-
 - (void)viewDidLoad {
     [super viewDidLoad];
-    selectedIndex = INT16_MAX;
+    self.spotsArray = [[NSMutableArray alloc]init];
+    [self setNeedsStatusBarAppearanceUpdate];
     [self.listTableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
-    ars = [[NSMutableArray alloc]init];
+    [self refresh];
     
-    for (int i = 0; i<=54; i++) {
-        int rndValue = (((float)arc4random()/0x100000000)*13);
-        [ars addObject:[UIImage imageNamed:[NSString stringWithFormat:@"%i.jpg",rndValue]]];
-    }
-    // Do any additional setup after loading the view, typically from a nib.
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,34 +40,46 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return ars.count;
+    return self.spotsArray.count;
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return indexPath.row == selectedIndex ? [UIScreen mainScreen].bounds.size.height : [UIScreen mainScreen].bounds.size.height/4;
+    return [UIScreen mainScreen].bounds.size.height/4;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     PListsTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PListsTableViewCell" forIndexPath:indexPath];
-    int rndValue2 = (((float)arc4random()/0x100000000)*9999);
-    [cell.imagePreview setImage:[ars objectAtIndex:indexPath.row]];
-    cell.distanceLabel.text = [NSString stringWithFormat:@"%ikm away",rndValue2];
     return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (selectedIndex == indexPath.row) {
-        selectedIndex = INT16_MAX;
-    }
-    else{
-        selectedIndex = (int)indexPath.row;
-    }
-    [tableView beginUpdates];
-    [tableView endUpdates];
-    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+
 }
 
+- (UIStatusBarStyle)preferredStatusBarStyle
+{
+    return UIStatusBarStyleLightContent;
+}
 
+-(void)refresh{
+    [PSpotsObjectHandler getSpots:^(NSArray *objArray) {
+//        self.spotsArray = [[NSMutableArray alloc]initWithArray:objArray];
+//        [self.listTableView reloadData];
+        for (PSpots *obj in objArray) {
+            float lat = [self randomFloatBetween:8 and:11];
+            float lon = [self randomFloatBetween:75 and:77];
+            PFGeoPoint *goePOint = [PFGeoPoint geoPointWithLatitude:lat longitude:lon];
+            obj.latLon = goePOint;
+            [obj saveInBackground];
+        }
+    } failure:^(NSError *error) {
+        
+    }];
+}
 
+- (float)randomFloatBetween:(float)smallNumber and:(float)bigNumber {
+    float diff = bigNumber - smallNumber;
+    return (((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
+}
 
 @end
