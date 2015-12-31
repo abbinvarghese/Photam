@@ -82,6 +82,7 @@
 		58C243DA1C33DB5600649069 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58C2438F1C33DB5600649069 /* 2.jpg */; };
 		58C243DB1C33DB5600649069 /* 59.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58C243901C33DB5600649069 /* 59.jpg */; };
 		58C243DC1C33DB5600649069 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 58C243911C33DB5600649069 /* 0.jpg */; };
+		58EB571A1C35062900BFF51C /* PIntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 58EB57191C35062900BFF51C /* PIntroViewController.m */; };
 		76A1F1008A67D3F69AFEF47B /* libPods-Photam.a in Frameworks */ = {isa = PBXBuildFile; fileRef = CCC756458A2C9F823F208D31 /* libPods-Photam.a */; };
 		ED20DFF41C26B071008600B8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20DFF31C26B071008600B8 /* main.m */; };
 		ED20DFF71C26B071008600B8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = ED20DFF61C26B071008600B8 /* AppDelegate.m */; };
@@ -171,6 +172,8 @@
 		58C2438F1C33DB5600649069 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
 		58C243901C33DB5600649069 /* 59.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 59.jpg; sourceTree = "<group>"; };
 		58C243911C33DB5600649069 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
+		58EB57181C35062900BFF51C /* PIntroViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PIntroViewController.h; sourceTree = "<group>"; };
+		58EB57191C35062900BFF51C /* PIntroViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PIntroViewController.m; sourceTree = "<group>"; };
 		590F9715C075FBB198DA559E /* Pods-Photam.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photam.release.xcconfig"; path = "Pods/Target Support Files/Pods-Photam/Pods-Photam.release.xcconfig"; sourceTree = "<group>"; };
 		A399C91975BD449083E56C47 /* Pods-Photam.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Photam.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Photam/Pods-Photam.debug.xcconfig"; sourceTree = "<group>"; };
 		CCC756458A2C9F823F208D31 /* libPods-Photam.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Photam.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +219,15 @@
 			children = (
 			);
 			name = Category;
+			sourceTree = "<group>";
+		};
+		58EB57171C3505FA00BFF51C /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				58EB57181C35062900BFF51C /* PIntroViewController.h */,
+				58EB57191C35062900BFF51C /* PIntroViewController.m */,
+			);
+			name = Intro;
 			sourceTree = "<group>";
 		};
 		626900545C20B9CF00C52152 /* Pods */ = {
@@ -284,6 +296,7 @@
 		ED20E0091C26B47A008600B8 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				58EB57171C3505FA00BFF51C /* Intro */,
 				ED20DFF81C26B071008600B8 /* ViewController.h */,
 				ED20DFF91C26B071008600B8 /* ViewController.m */,
 			);
@@ -577,6 +590,7 @@
 				58543FBD1C31083500BDD076 /* PSpotsObjectHandler.m in Sources */,
 				ED20DFFA1C26B071008600B8 /* ViewController.m in Sources */,
 				ED20DFF71C26B071008600B8 /* AppDelegate.m in Sources */,
+				58EB571A1C35062900BFF51C /* PIntroViewController.m in Sources */,
 				ED20E00D1C26B4C3008600B8 /* PListsTableViewCell.m in Sources */,
 				ED20DFF41C26B071008600B8 /* main.m in Sources */,
 			);

@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Parse/Parse.h>
+#import "PIntroViewController.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +20,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [Parse setApplicationId:@"MVE0YRWKitySXojrwJxOkODfCx3OUWmjM4cmk6sh"
                   clientKey:@"wUrytu6s5oPK9g9Wdmnk5rBsu0ierVTM3oZE981w"];
+    
+    self.window = [[UIWindow alloc] initWithFrame:UIScreen.mainScreen.bounds];
+    
+    if([[NSUserDefaults standardUserDefaults]objectForKey:@"firstTime"]){
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ViewController *vc = [storyboard instantiateViewControllerWithIdentifier:@"ViewController"];
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:vc];
+        self.window.rootViewController = nav;
+    }else{
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:[NSBundle mainBundle]];
+        UINavigationController *controller = (UINavigationController*)[storyboard instantiateViewControllerWithIdentifier: @"navID"];
+        self.window.rootViewController = controller;
+        
+    }
+    [self.window makeKeyAndVisible];
     return YES;
 }
 

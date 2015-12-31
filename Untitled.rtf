@@ -1,0 +1,46 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf130
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red170\green13\blue145;\red28\green0\blue207;\red38\green71\blue75;
+\red63\green110\blue116;\red196\green26\blue22;\red92\green38\blue153;\red46\green13\blue110;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab529
+\pard\tx529\pardeftab529\pardirnatural\partightenfactor0
+
+\f0\fs22 \cf0 \CocoaLigature0     i++;\
+    \cf2 int\cf0  size = \cf3 0\cf0 ;\
+    \cf2 float\cf0  lat = [\cf2 self\cf0  \cf4 randomFloatBetween\cf0 :\cf3 8\cf0  \cf4 and\cf0 :\cf3 12\cf0 ];\
+    \cf2 float\cf0  lon = [\cf2 self\cf0  \cf4 randomFloatBetween\cf0 :\cf3 74\cf0  \cf4 and\cf0 :\cf3 77\cf0 ];\
+    \
+    \cf5 PSpots\cf0  *spotObj = [\cf5 PSpots\cf0  \cf4 object\cf0 ];\
+    spotObj.\cf5 spotTitle\cf0  = \cf6 @"Sample Title"\cf0 ;\
+    spotObj.\cf5 spotDescription\cf0  = \cf6 @"The Parse platform provides a complete backend solution for your mobile application. Our goal is to totally eliminate the need for writing server code or maintaining servers."\cf0 ;\
+    spotObj.\cf5 rating\cf0  = [\cf7 NSNumber\cf0  \cf8 numberWithInt\cf0 :(\cf2 int\cf0 )[\cf2 self\cf0  \cf4 randomFloatBetween\cf0 :\cf3 0\cf0  \cf4 and\cf0 :\cf3 5\cf0 ]];\
+    spotObj.\cf5 latLon\cf0  = [\cf5 PFGeoPoint\cf0  \cf4 geoPointWithLatitude\cf0 :lat \cf4 longitude\cf0 :lon];\
+    \cf7 NSMutableArray\cf0  *imageArray = [[\cf7 NSMutableArray\cf0  \cf8 alloc\cf0 ]\cf8 init\cf0 ];\
+    \cf2 for\cf0  (\cf2 int\cf0  k = \cf3 0\cf0 ; k<\cf3 5\cf0 ; k++) \{\
+        \cf7 NSString\cf0  *imageName = [\cf7 NSString\cf0  \cf8 stringWithFormat\cf0 :\cf6 @"%d.jpg"\cf0 ,(\cf2 int\cf0 )[\cf2 self\cf0  \cf4 randomFloatBetween\cf0 :\cf3 0\cf0  \cf4 and\cf0 :\cf3 72\cf0 ]];\
+        \cf7 NSData\cf0  *imageData = \cf8 UIImageJPEGRepresentation\cf0 ([\cf7 UIImage\cf0  \cf8 imageNamed\cf0 :imageName], \cf3 1.0\cf0 );\
+         \cf8 NSLog\cf0 (\cf6 @"File size is : %.2f MB"\cf0 ,(\cf2 float\cf0 )imageData.\cf7 length\cf0 /\cf3 1024.0f\cf0 /\cf3 1024.0f\cf0 );\
+        size = size + imageData.\cf7 length\cf0 /\cf3 1024.0f\cf0 /\cf3 1024.0f\cf0 ;\
+        \cf2 if\cf0  (imageData==\cf2 nil\cf0 ) \{\
+            imageName = [\cf7 NSString\cf0  \cf8 stringWithFormat\cf0 :\cf6 @"%d.jpg"\cf0 ,(\cf2 int\cf0 )[\cf2 self\cf0  \cf4 randomFloatBetween\cf0 :\cf3 0\cf0  \cf4 and\cf0 :\cf3 75\cf0 ]];\
+            imageData = \cf8 UIImageJPEGRepresentation\cf0 ([\cf7 UIImage\cf0  \cf8 imageNamed\cf0 :imageName], \cf3 1.0\cf0 );\
+        \}\
+        \cf2 else\cf0 \{\
+            \cf5 PFFile\cf0  *imageFile = [\cf5 PFFile\cf0  \cf4 fileWithData\cf0 :imageData];\
+            [imageArray \cf8 addObject\cf0 :imageFile];\
+        \}\
+    \}\
+    \
+    spotObj.\cf5 imageArray\cf0  = imageArray;\
+    \
+    [spotObj \cf4 saveInBackgroundWithBlock\cf0 :^(\cf2 BOOL\cf0  succeeded, \cf7 NSError\cf0  * \cf2 _Nullable\cf0  error) \{\
+        \cf2 if\cf0  (succeeded) \{\
+            \cf8 NSLog\cf0 (\cf6 @"Succeede = %i"\cf0 ,i);\
+            \cf8 NSLog\cf0 (\cf6 @"Size = %i"\cf0 ,size);\
+            [\cf2 self\cf0  \cf4 refresh\cf0 :i];\
+        \}\
+        \cf2 else\cf0 \{\
+            \cf8 NSLog\cf0 (\cf6 @"Failed = %i"\cf0 ,i);\
+        \}\
+    \}];}

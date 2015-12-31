@@ -8,10 +8,10 @@
 
 #import "ViewController.h"
 #import "PListsTableViewCell.h"
-#import "PSpots.h"
 
 @interface ViewController ()
 
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *loadIndicator;
 @property (weak, nonatomic) IBOutlet UITableView *listTableView;
 @property (nonatomic,strong) NSMutableArray *spotsArray;
 @end
@@ -23,7 +23,7 @@
     self.spotsArray = [[NSMutableArray alloc]init];
     [self setNeedsStatusBarAppearanceUpdate];
     [self.listTableView setContentInset:UIEdgeInsetsMake(20, 0, 0, 0)];
-    [self refresh:0];
+    [self refresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -58,51 +58,9 @@
     return UIStatusBarStyleLightContent;
 }
 
--(void)refresh:(int)i{
-    i++;
-    int size = 0;
-    float lat = [self randomFloatBetween:8 and:12];
-    float lon = [self randomFloatBetween:74 and:77];
+-(void)refresh{
+    [self.loadIndicator startAnimating];
     
-    PSpots *spotObj = [PSpots object];
-    spotObj.spotTitle = @"Sample Title";
-    spotObj.spotDescription = @"The Parse platform provides a complete backend solution for your mobile application. Our goal is to totally eliminate the need for writing server code or maintaining servers.";
-    spotObj.rating = [NSNumber numberWithInt:(int)[self randomFloatBetween:0 and:5]];
-    spotObj.latLon = [PFGeoPoint geoPointWithLatitude:lat longitude:lon];
-    NSMutableArray *imageArray = [[NSMutableArray alloc]init];
-    for (int k = 0; k<5; k++) {
-        NSString *imageName = [NSString stringWithFormat:@"%d.jpg",(int)[self randomFloatBetween:0 and:72]];
-        NSData *imageData = UIImageJPEGRepresentation([UIImage imageNamed:imageName], 1.0);
-         NSLog(@"File size is : %.2f MB",(float)imageData.length/1024.0f/1024.0f);
-        size = size + imageData.length/1024.0f/1024.0f;
-        if (imageData==nil) {
-            imageName = [NSString stringWithFormat:@"%d.jpg",(int)[self randomFloatBetween:0 and:75]];
-            imageData = UIImageJPEGRepresentation([UIImage imageNamed:imageName], 1.0);
-        }
-        else{
-            PFFile *imageFile = [PFFile fileWithData:imageData];
-            [imageArray addObject:imageFile];
-        }
-    }
-    
-    spotObj.imageArray = imageArray;
-    
-    [spotObj saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-        if (succeeded) {
-            NSLog(@"Succeede = %i",i);
-            NSLog(@"Size = %i",size);
-            [self refresh:i];
-        }
-        else{
-            NSLog(@"Failed = %i",i);
-        }
-    }];
-    
-}
-
-- (float)randomFloatBetween:(float)smallNumber and:(float)bigNumber {
-    float diff = bigNumber - smallNumber;
-    return (((float) (arc4random() % ((unsigned)RAND_MAX + 1)) / RAND_MAX) * diff) + smallNumber;
 }
 
 @end

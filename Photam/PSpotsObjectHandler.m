@@ -8,9 +8,12 @@
 
 #import "PSpotsObjectHandler.h"
 
+
 @implementation PSpotsObjectHandler
 
-
++(void)getAllSpotsNear:(CLLocation*)location withIn:(double)distance{
+    
+}
 
 
 @end
